@@ -1,40 +1,19 @@
 # week2 课程纲要
 
-本周课程主题：线性数据结构。分别介绍两种
+本周主题：线性数据结构 List。
 
-# 使用 Array 实现 List 结构
+1. IntList： 使用递归的方式实现链表
+2. SLList：对外隐藏递归细节的单向链表
+3. DList：在单向链表基础上，做了读取性能优化的双向链表、支持通用类型的列表结构
+4. AList：使用数组实现 List 结构
+  - Java 中的数组固定长度，不能动态增加元素；
+  - 有 length 属性，没有实例方法，只用来保存数据；
+  - 初始化数组时，编译器会根据类型填入默认值，`int[] arr = new int[4]`，`arr[0]` 到 `arr[3]`的值都为 0；
+  - 二维数组（又叫矩阵）的声明方式 `int[][] arr`；
+  - 用数组实现列表结构的优势，随机读取的时间为常量；
+  - 用数组实现列表时，超过数组预定大小，需创建一个大小为 `size * RFACTOR` 的新数组，RFACTOR（因子）可为常量，如 2，或按照一定算法生成；
+  - 数组实现列表时，为了优化空间使用率，需要考虑空间使用率，`R = size / items.length`，当 `R < 0.25` 时，就将数组总长度缩小一半。
 
-列表（List） 是一种抽象线性结构，它可以通过索引 i 访问列表中的第 i 的元素。在 Java 中列表可以用链表（Linked-list） 和数组（Array）实现。
+本周 Discussion：有两个，主要内容是巩固类、Map、List的使用。
 
-基于数组而不是链表的实现的优势主要体现在：数组的随机读取的时间复杂度是常量，而随机读取链表则和链表的大小相关。
-
-cs61B 课程中需要实现具有以下特性的列表结构：
-
-```java
-class AList {
-    public AList() {}
-
-    /** Inserts X into the back of the list. */
-    public void addLast(int x) {}
-
-    /** Returns the item from the back of the list. */
-    public int getLast() {}
-    /** Gets the ith item in the list (0 is the front). */
-    public int get(int i) {}
-
-    /** Returns the number of items in the list. */
-    public int size() {}
-
-    /** Deletes item from back of the list and
-     * returns deleted item. */
-    public int removeLast() {}
-}
-```
-
-我用自己的思路实现时，主要的问题在于，Java 中的数组必须在初始化时确定大小，而题目要求在初始化 AList 时得到一个大小为 0 的列表。
-
-我把 AList 的大小和用来实现它的数组的大小合并成一个概念，在初始化 AList 时，初始化一个大小为 0 的数组，之后每次在数组中添加一个元素，就创建一个比当前数组大小大 1 的新数组，再讲当前数组的所有元素复制到新数组。
-
-这种实现方式在写的时候怪怪的，尽管最后能通过测试，但可想而知添加一个元素就进行一次数组复制的操作的性能消耗也太大了。
-
-直到看到 Josh Hug 写到 AList 要有一个 `size` 成员变量，以及在构造函数初始化一个大小为 100 的数组，马上明白过来了：对外使用的 AList 的大小和实现它的数组的大小是**两个需要分开的概念**。
+本周 Lab：[Lab 02 - Debugging](https://sp23.datastructur.es/materials/lab/lab02)。介绍了在源代码中打断点、使用 Debug 的方式跑代码以及 IntelliJ 的 Debug 面板上的按钮功能，提供了几段函数要求 Debug 使它们正常运行。
