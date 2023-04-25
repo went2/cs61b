@@ -2,6 +2,8 @@
 
 第二周第三个 Lecture 的 Guide 中的有道练习题，来自 Spring 2015 学期期中考卷的第 7 题，花了较长时间才明白，做个记录。
 
+（待记录一个 Guide 习题）
+
 第二周第三个 Discussion/Review 是 8 道练习：
   - 题目[Tutor Review Session](https://drive.google.com/file/d/135cZ5OyhJzvrkc-wpj7KRiwCNCuNWTkB/view)
   - 答案[solutions](https://drive.google.com/file/d/147wgz1ztOTuq6Rgfcvs3dW-xu93ZNE8c/view?usp=sharing)
