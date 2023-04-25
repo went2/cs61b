@@ -14,6 +14,6 @@
   - 用数组实现列表时，超过数组预定大小，需创建一个大小为 `size * RFACTOR` 的新数组，RFACTOR（因子）可为常量，如 2，或按照一定算法生成；
   - 数组实现列表时，为了优化空间使用率，需要考虑空间使用率，`R = size / items.length`，当 `R < 0.25` 时，就将数组总长度缩小一半。
 
-本周 Discussion：有两个，主要内容是巩固类、Map、List的使用。
+本周 Discussion/Review：前两个是 Discussion，主要内容是巩固类、Map、List的使用，第三个是 Review，针对 IntList 结构的练习，如链表翻转等，详见 `./exercises/` 
 
 本周 Lab：[Lab 02 - Debugging](https://sp23.datastructur.es/materials/lab/lab02)。介绍了在源代码中打断点、使用 Debug 的方式跑代码以及 IntelliJ 的 Debug 面板上的按钮功能，提供了几段函数要求 Debug 使它们正常运行。
