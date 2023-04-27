@@ -11,5 +11,7 @@ Josh Hug 以编写选择排序为例，演示了 TDD 的过程，使用了 Googl
 
 这三个过程都可以写成独立的方法，进行单元测试，在 3 中用递归的方式结合使用 1 和 2，实现选择排序的逻辑。
 
-本周 Discussion/Review，共有 3 个，前两个 Discussion，最后一个 Review
-  - 第一次 Discussion: 练习题[Discussion03](https://drive.google.com/file/d/1qiF-aEYKl6-Y8gsf_SfHSjlgQ9SlLHTb/view)
+本周 Discussion/Review，共有 3 个，前两个 Discussion，最后一个 Review，见 `exercises/Discussion&Review.md`
+  - 第一次 Discussion: 练习题[Discussion 03](https://drive.google.com/file/d/1qiF-aEYKl6-Y8gsf_SfHSjlgQ9SlLHTb/view)
+  - 第二次 Discussion[Exam Levle 03](https://drive.google.com/file/d/14MsmrUNXnp-aiJVosQYTbMusnt2rrgeH/view)
+  - 第三次[Exam Review](https://drive.google.com/file/d/1koTjUljHHI_ojyw5Q_DqBYhw6nnl7kh5/view)
