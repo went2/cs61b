@@ -16,4 +16,4 @@ Josh Hug 以编写选择排序为例，演示了 TDD 的过程，使用了 Googl
   - 第二次 Discussion[Exam Levle 03](https://drive.google.com/file/d/14MsmrUNXnp-aiJVosQYTbMusnt2rrgeH/view)
   - 第三次[Exam Review](https://drive.google.com/file/d/1koTjUljHHI_ojyw5Q_DqBYhw6nnl7kh5/view)
 
-本周 [Lab 03](https://sp23.datastructur.es/materials/lab/lab03/)，探索单向链表 `SLList` 和基于数组实现的列表 `AList` 的用法。
+本周 [Lab 03](https://sp23.datastructur.es/materials/lab/lab03/)，使用经验主义的方式，测试单向链表 `SLList` 和 `AList` 的执行时间。详见 `./lab/README.md`
