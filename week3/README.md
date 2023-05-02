@@ -44,7 +44,7 @@
 本周的项目两个：[project1a](https://sp23.datastructur.es/materials/proj/proj1a)、[project1b](https://sp23.datastructur.es/materials/proj/proj1b/)，详见 `./project/README.md`
 
 - project1a：一步一步介绍了如何采用测试驱动开发（TDD）的方式，实现一个基于双向链表的 Deque（双端队列）结构。
-- project1b：要求自己实现一个基于数组的 Deque 结构。
+- project1b：要求自己实现一个基于数组的 Deque 结构。实现的方式也是 TDD，先写关于一个方法的测试，跑测试，测试失败，然后实现方法，再跑测试。
 
 ## 5. 第三周学习回顾
 
