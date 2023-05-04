@@ -30,3 +30,11 @@
 
 - 在校学生参加第一次期中考试。
 - 提交 Project 1。
+
+## 5. week4 学习回顾
+
+这周内容印象较深的一是做了很多练习题来区别一个变量的编译时类型和运行时类型，二是 Java 用 interface 的机制实现其他语言中 callback 的功能，因为 Java 中的一切都是让对象干的。
+
+这周的编码任务是延续上周的 Project 1B。
+
+调整了学习策略，现在改为，周一的 lecture 看完后，完成所有的 discussions；周三的 lecture 看完后，完成 lab；周五的 lecture 完成后，写 project。
