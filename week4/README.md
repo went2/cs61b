@@ -6,6 +6,8 @@
 - 封装
 - 编译时类型检测
 - 高阶函数
+- 子类多态
+- Java 中使用 interface 实现其他语言中 callback 的功能
 
 详见 `./lectures/README.md`
 
