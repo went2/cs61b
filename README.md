@@ -1,6 +1,6 @@
 # 说明
 
-CS 61B Data Structure sp23 学习过程。
+CS 61B sp23 学习过程，记录的内容是超过我目前经验的内容。
 
 主讲教师：Josh Hug
 
@@ -8,7 +8,9 @@ CS 61B Data Structure sp23 学习过程。
 
 作业起始代码：https://github.com/Berkeley-CS61B/skeleton-sp23
 
-每周的课程的教学内容主要有三部分：
+## 课程内容说明
+
+每周的教学内容分三部分：
 
 - Lecture：内容讲解。周一、周三、周五下午 1:00pm - 2:00pm。面对面 + 线上授课的方式。Lecture 包括阅读材料（Reading）、课程的视频（video）、幻灯片（slides）、课后小结（guide）。课后小结中会布置几个课后作业。
 - Discussion/Review：由助教带领的解题课程，复习上周课程的知识点，一周 2-3 次，每次 1 小时。在校学生通过 Zoom 参与，期间使用的课程材料向公众开放。课程材料包括：作业单（wordsheet）、讲解视频、讲解幻灯片、作业答案。
