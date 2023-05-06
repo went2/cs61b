@@ -143,7 +143,7 @@ public class Dog implements Comparable<Dog> {
 
 ## 6. Comparator
 
-comparable 接口定义将自己和其他对象对比的行为，如果要进行其他规则的比较，需要另一个接口 Comparator：
+Comparable 接口定义将自己和其他对象对比的行为，如果要进行其他规则的比较，则用另一个接口 Comparator：
 
 ```java
 public interface Comparator<T> {
