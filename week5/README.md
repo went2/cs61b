@@ -19,3 +19,12 @@
 
 课程的后续部分围绕 2 展开。
 
+- 渐进分析：在输入 N 非常大的情况下，计算函数的 order of growth
+- Big-Theta：θ(f(N)) 表示函数 f(N) 的 order of growth 的记法
+- Big-O：O(f(N)) 表示小于等于函数 f(N) 的 order of growth 的记法
+  For example, the following statements are all true:
+
+
+
+
+

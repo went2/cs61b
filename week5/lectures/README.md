@@ -83,3 +83,28 @@ private class ArraySetIterator implements Iterator<T> {
 	}
 }
 ```
+
+## lecture 13 渐进分析
+
+### RunTime Characterization 刻画程序的运行时
+
+如何知道程序在运行时的表现？
+  1. 计时，用秒表、Unix 的 `time` 计算程序执行的耗时；
+  2. 计算操作数（operations），计算在不同规模的输入下，执行程序需要的操作数量。
+
+不同算法会产生不同的操作数量，在输入的 N 较小时，不同算法之间的差异可以忽略不计，但 N 以百万计时，算法的操作数会出现极大的差异，从而显出优劣，如下图：
+
+![算法的 scaling](../images/scaling%20across%20many%20domains.png)
+
+### Computing Worst Case Order of Growth
+
+一个算法在输入为 N 时的操作包括以下组成：
+  1. less than (<) ：100N^2 + 3N
+  2. greater than (>) ： 2N^3 + 1
+  3. and (&&) ： 5,000
+
+问这个算法的增长曲线最最近哪种形状？N、N^2 还是 N^3？
+
+答案是 N^3，因为 N 很大时，`2N^3 + 1` 这步操作的耗时**远远大于其他操作**。
+
+![order-of-growth-identification](../images/Intuitive%20Order%20of%20Growth%20Identification.png)
