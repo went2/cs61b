@@ -24,7 +24,3 @@
 - Big-O：O(f(N)) 表示小于等于函数 f(N) 的 order of growth 的记法
   For example, the following statements are all true:
 
-
-
-
-
