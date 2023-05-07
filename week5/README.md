@@ -29,4 +29,6 @@
 [Lab 05: Advanced Git and Debugging](https://sp23.datastructur.es/materials/lab/lab05/)
 
 - Git： 解决本地分支与远程分支文件的冲突。需要配合 Grandscope 课程评分系统使用
-- Debugger：
+- Debugger：在调试中使用表达式
+
+详见 `./lab05/README.md`
