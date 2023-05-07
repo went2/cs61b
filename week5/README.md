@@ -24,3 +24,9 @@
 - Big-O：O(f(N)) 表示小于等于函数 f(N) 的 order of growth 的记法
   For example, the following statements are all true:
 
+## Lab05 深入探究 Git 和 Debugger 的用法
+
+[Lab 05: Advanced Git and Debugging](https://sp23.datastructur.es/materials/lab/lab05/)
+
+- Git： 解决本地分支与远程分支文件的冲突。需要配合 Grandscope 课程评分系统使用
+- Debugger：
