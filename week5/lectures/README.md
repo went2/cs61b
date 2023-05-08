@@ -157,7 +157,7 @@ public interface DisjointSets {
 
 这种方式底层使用集合与列表来实现，每个操作的复杂度都是线性的，接着我们换一种底层结构来实现。
 
-### quick find
+### Quick Find
 
 我们使用数据进行底层结构来实现，我们用数组的索引表示集合中的元素，用索引处的值表示它所属的集合（一开始接触这种思路时，觉得神奇，数组的索引还可以这么用。但这适用于元素为整数的情况，能对应到数组的索引，如果元素时浮点数，或是对象，这种方式就不适用了），索引处的值相同，表示索引代表的元素属于相同集合，我们只判断是否相同，不判断具体相同的值时多少。
 
@@ -208,7 +208,7 @@ public class QuickFindDS implements DisjointsSets {
 
 对比上一种实现，`isConnected` 操作的性能现在是常数级别了，那么 `connect` 的性能是否可以继续提升？
 
-### quick union
+### Quick Union
 
 QuickFind 中我们用数组索引处的值的**相同**表示这些索引属于同一个集合，每次合并两个元素时，就要找到所有与其中一个元素相同的值，这种操作的复杂度是 Θ(N)。
 
@@ -277,11 +277,11 @@ public class QuickUnionDS implements DisjointSets {
 }
 ```
 
-### weighted quick union
+### Weighted Quick Union
 
 如何提升 Quick Union 的性能？我们发现 `find()` 操作是查询父元素直到树根，树越短，查询的速度越快。基于这个发现，我们增加一条 connect() 时的规则：合并两个树时，我们总是把较小树的根添加到较大的树上。
 
-使用这个规则构建的树，它的最大高度是 `logN`。
+使用这个规则构建的树，它的最大高度是 `logN`，即 `H <= LogN`
 
 如何衡量两个树的大小？用树包含的元素数衡量，树A包含的元素数量比树B多，就说树A比树B大。数的大小保存到树根上，原来树根保存 -1，现在保存 `-(size of tree)`。
 
@@ -291,7 +291,7 @@ public class QuickUnionDS implements DisjointSets {
 |  ----  | ----  | ----  | ----  |
 |  WeightedQuickUnion | Θ(N) | O(log(N)) | O(log(N)) |
 
-### weighted quick union with path compression
+### Weighted Quick Union with Path Compression
 
 在 WQN 实现基础上，我们做一步路径压缩的操作，可以继续提升性能：在 find(x) 寻找树根的过程中，我们将沿途找到的所有元素的父元素都设置为最后找到的树根元素，这样 `find()` 越多，树就越扁平，这种算法的 amortized runtime（摊销运行时）能达到近乎常量。准确地说，它的复杂度是 `O(N+M(lg*N))`，`lg*` 是迭代对数，它在真实世界中不会超过 5。
 
