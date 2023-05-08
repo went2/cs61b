@@ -28,9 +28,9 @@
 - Big-O：O(f(N)) 表示小于等于函数 f(N) 的 order of growth 的记法
   For example, the following statements are all true:
 
-### lecture 14 Disjoint Sets 不交集
+### lecture 14 Disjoint Sets
 
-- 用集合表示元素之间有关联
+- 不交集数据结构的实现
 
 ## Lab05 深入探究 Git 和 Debugger 的用法
 
@@ -40,3 +40,7 @@
 - Debugger：在调试中使用表达式
 
 详见 `./lab05/README.md`
+
+## Assignment
+
+本周作业 [project1c: 双端队列强化练习](https://sp23.datastructur.es/materials/proj/proj1c/)
