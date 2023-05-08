@@ -303,3 +303,51 @@ public class QuickUnionDS implements DisjointSets {
 |  QuickUnion | Θ(N) | O(N) | O(N) |
 |  WeightedQuickUnion | Θ(N) | O(log(N)) | O(log(N)) |
 |  WQN with 路径压缩 | Θ(N) | O(α(N))* | O(α(N))* |
+
+### 几道练习题
+
+[Exercises](https://cs61b-2.gitbook.io/cs61b-textbook/14.-disjoint-sets/14.6-exercises)
+
+1. Suppose we create a WQU with N items, then we perform M1 union operations and M2 union operations. Using big O notation, what is the runtime of this sequence of operations?
+
+问 WQU 操作 M1 次 和 M2 次的复杂度，应为 O(N + (M1+M2)logN)
+
+2. Using the same variables as problem 2, describe a sequence of operations that would result in a runtime of O(N + M1 + M2).
+
+问什么操作会使运行时操作为 O(N + M1 + M2)？从题目推断 connect(), isConnected() 的复杂度均变成了常量，这是形成了高度只有 1 的树会产生的情况，也就是 connect(0,1)、connect(0,2) 一直到 connect(0,N)
+
+3. Write a int find(int p) method for the WQU with path compression. It should perform path compression as described in lecture: any node on the path from root to our target node should have its parent reset to the root. It takes in the target node p and returns the root of the tree p is in.
+
+写一个带路径压缩的查找根树的函数 `int find(int p)`，传入一个节点的索引，返回根树的索引。
+
+可以用递归求解（没实际跑过，根据对递归的理解写的）：
+
+```java
+public int find(int p) {
+  if(parent[p] < 0) { // 约定根元素索引存的值是 -(size of tree)
+    return p;
+  }
+  int rootIdx = find(parent[p]); // rootIdx 在最后一个 frame 返回后开始有值 
+  parent[p] = rootIdx;
+  return rootIdx;
+}
+```
+
+参考答案使用了两次循环，一次找到根，一次将沿途所有元素的父级替换为根：
+
+```java
+public int find(int p) {
+  int root = p;
+  while(root != parent[root]) { // 这个终止条件什么意思？root 的 parent[root] 是它自己？
+    root = parent[root];
+  }
+
+  while(p != root) {
+    int newParent = parent[p];
+    parent[p] = root;
+    p = newParent;
+  }
+
+  return root;
+}
+```
