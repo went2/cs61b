@@ -8,11 +8,24 @@
   2. 在自己数据结构类中创建类，实现 Iterator 接口
 - 添加 toString 方法：该方法返回对象的字符串表示，Object 类的 toString 方法返回`类名@内存地址`，实现自己的数据结构时可重写该方法使之支持打印。
   - 实现时注意由于字符串是不可改变的，直接拼接字符串性能较低，用 StringBuilder 生成字符串
-- 添加 equal(Object) 方法：Object 实现的 equal 的用的 `==`，可覆盖此方法，实现对象比较，详见 `./lectures/README.md`
+- 添加 equals(Object) 方法：Object 实现的 equals 的用的 `==`，可覆盖此方法，实现对象比较
 
 ```java
 @Override
-public Boolean equal(Object o) {
+public String toString() {
+    List<String> listOfItems = new ArrayList<>();
+
+    for(T item : this) {
+        items.add(listOfItems.toString());
+    }
+
+    return "[" + String.join(", ", listOfItems) + "]";
+}
+```
+
+```java
+@Override
+public Boolean equals(Object o) {
   if (this == o) { return true; }
   if (o instanceof ArraySet otherO) {
     if(this.size != otherO.size) { return false; }
