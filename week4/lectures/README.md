@@ -143,7 +143,7 @@ public class Dog implements Comparable<Dog> {
 
 ## 6. Comparator
 
-Comparable 接口定义将自己和其他对象对比的行为，如果要进行其他规则的比较，则用另一个接口 Comparator：
+Comparable 接口定义将自己和其他对象对比的行为，如果要进行其他规则的比较，则用另一个接口 [Comparator](https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html)：
 
 ```java
 public interface Comparator<T> {
@@ -151,7 +151,9 @@ public interface Comparator<T> {
 }
 ```
 
-举例，让 Dog 类实现按名字首字母的顺序进行比较，要在 Dog 类中再定义一个类实现 Comparator
+因此，对于一个 Comparator 对象，我们能期待的是它有一个 compare 方法，接受两个对象，并将它们进行比较，o1 小于 o2 返回负数，相等返回 0，o1 大于 o2 返回正数，至于怎么确定 o1 o2 的大小，则由 Comparator 的实现决定。
+
+下面实现一个能比较两个 Dog 对象的 Comparator
 
 ```java
 public class Dog implements Comparable<Dog> {

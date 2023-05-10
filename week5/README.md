@@ -43,4 +43,7 @@
 
 ## Assignment
 
-本周作业 [project1c: 双端队列强化练习](https://sp23.datastructur.es/materials/proj/proj1c/)
+本周作业 [project1c](https://sp23.datastructur.es/materials/proj/proj1c/)
+    - 双端队列增强：添加迭代器、toString、equals 方法；
+    - ArrayDeque 增强：实现 MaxArrayDeque 类，增加 max 方法，队列中的最大值，比较规则由传入的 Comparator 确定。
+    - Guitar Hero：用以上的数据结构实现一个算法模拟吉他琴弦的拨动效果
