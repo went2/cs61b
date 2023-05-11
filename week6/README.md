@@ -1,9 +1,16 @@
 # week6 课程纲要
 
-## 一、Lectures
+## 1. Lectures
 
-- 分析常见算法的运行时
+详细见 `./lectures/README.md`
 
-## 二、Lab05 深入探究 Git 和 Debugger 的用法
+- lecture15: 分析常见算法的运行时
 
-## 三、Assignment
+## 2. Discussion/Review 讨论与回顾
+
+- disc06: 渐进分析与不交集数据结构
+- exam-level06：渐进分析与不交集数据结构
+
+## 3. Lab
+
+## 4. Assignment
