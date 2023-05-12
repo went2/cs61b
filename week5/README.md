@@ -31,6 +31,7 @@
 ### lecture 14 Disjoint Sets
 
 - 不交集数据结构的实现
+    - Weighted Quick Union 规则：合并时，节点较少的树增加到节点多的树，可使得整个树的高度最大为 logN。
 
 ## Lab05 深入探究 Git 和 Debugger 的用法
 
