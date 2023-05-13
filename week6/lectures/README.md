@@ -154,3 +154,53 @@ public void merge(int[] arr, int[] leftHalf, int[] rightHalf) {
     }
 }
 ```
+
+## lecture 16 抽象数据结构和二分查找树
+
+[ADTs and BSTs](https://cs61b-2.gitbook.io/cs61b-textbook/16.-adts-and-bsts)
+
+##　ADTs
+
+ADTs，抽象数据结构，由它的操作定义，而不是实现。Java 中的 interface 如 Map，Set，List，DisjointSets 都属于 ADTs
+
+## BSTs
+
+二分查找树，一种很重要的基础结构，它可以用来实现 Map，Set 等结构。
+    - 树：是一种有节点（node）和节点之间的连接（edge）组成的结构，任意两个节点之间**只有一条路径**。
+    - 有根树（rooted tree）：指定了一个节点作为根的树，根节点是树的起点，它没有父节点。叶子（leaf）节点是树的末端，它没有子节点。
+    - 二分树：每个节点只有 0-2 个子节点的有根树。
+    - 二分查找树：具备 “二分查找属性” 的二分树。
+        - 二分查找属性：对于任意一个节点，其左侧子树的所有节点的key都比它小，右侧子树所有节点的key都比它大。
+
+二分查找树节点类型 BST 定义如下：
+
+```java
+private class BST<Key> {
+    private Key key;
+    private BST left;
+    private BST right;
+
+    public BST(Key key, BST left, BST right) {
+        this.left = left;
+        this.right = right;
+        this.key = key;
+    }
+    public BST(Key key) {
+        this.key = key;
+    }
+}
+```
+
+BST 的操作：
+    - search(key)，运行时 O(logN)
+    - insert(key)，被传插入的节点会作为叶子节点，操作运行时 O(logN)
+    - delete(key)，运行时 O(logN)
+
+删除一个节点操作的实现分三种情况：
+    1. 节点无子节点，直接删除；
+    2. 节点只有一个子节点（左节点或右节点）：将节点的父节点指向节点的子节点；
+    3. 节点有两个子节点：要找节点的继任者：
+        - 从节点的左树中找到最大key的节点（predecessor）
+        - 或从节点的友树中找到最小key的节点（successor）
+        - 用继任者节点替换该节点
+        - 删除继任者节点
