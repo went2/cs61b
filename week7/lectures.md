@@ -19,8 +19,8 @@ BST（二分查找树）的高度增长最优是 O(logN)，最差是O(N)，B-Tre
 B 树的特点是：
 
 - 一个节点可以保存 1 到 L 个元素
-- `contains` 操作跟普通 BST 几乎一样
-- `add` 新添加的元素不再成为叶子节点，而加到同层的节点中，如果节点保存的元素的数量超过 L，则将其中一个元素移到父节点，同时将节点拆分。
+- `contains`： 操作跟普通 BST 几乎一样
+- `add`：新元素会加到叶子节点中，如果节点保存的元素的数量超过 L，则将其中一个元素移到父节点，同时将节点拆分。
 
 B 树的高度增长来自子节点中的元素数量溢出而产生的 元素上升为父节点，并分割子节点 的操作。
 
@@ -30,6 +30,8 @@ B 树的高度增长来自子节点中的元素数量溢出而产生的 元素�
 
 2-3-4树，L=3 的 B树，每个节点最多保存 3 个元素，最多有 4 个子节点
 2-3树，L=2 的 B树，每个节点最多由 2 个元素，最多有 3 个子节点
+
+L 也可以是成千上万，即一个节点保存上千个元素，这一般用于数据库或文件系统中，课程讨论的 B 树是 2-3树或 2-4树。
 
 ## lecture 18 红黑树
 
@@ -49,5 +51,50 @@ LLRB：红支总是向左的红黑树。
 
 实现红黑树意味将 2-3 树（B树）的表现与操作用 BST 的操作来实现。
 
-插入操作：
+插入操作有以下规则：
 
+- 使用红链连接新插入的节点
+- 如果形成了红色右向的链接，要进行节点的左旋 (rotateLeft)
+- 如果形成了连续的红色链接（对应的 2-3树中出现了一个节点有3个元素的情况），要进行节点的右旋（rotateRight）
+- 如果一个节点有两条红色的链接，要将该节点所有链接的颜色翻转（对应 2-3 树中节点元素分离的操作）
+
+[示例](https://docs.google.com/presentation/d/1jgOgvx8tyu_LQ5Y21k4wYLffwp84putW8iD7_EerQmI/edit#slide=id.g463de7561_042)：向 LLRB 中连续插入 7,6,5,4,3,2,1 最终会得到一个完全平衡的 BST，如果是在普通的 BST 中插入，得到的是类似单向链表的结构。
+
+LLRB 的运行时：
+- 树高的增长 O(logN)
+- contains 操作 O(logN)
+- 插入操作 O(logN)
+    - 添加新节点 O(logN)
+    - 旋转节点或者翻转颜色 O(logN)
+
+LLRB 的实现：相比一般的 BST 只是多了三行维持 2-3 树结构的操作，以下是 LLRB 的 一个实现：
+
+```java
+private Node put(Node h, Key key, Value val) {
+	if (h == null) { return new Node(key, val, RED); }
+ 
+	int cmp = key.compareTo(h.key);
+    if (cmp < 0)      { h.left  = put(h.left,  key, val); }
+    else if (cmp > 0) { h.right = put(h.right, key, val); }
+    else              { h.val   = val;                    }
+ 
+	if (isRed(h.right) && !isRed(h.left))      { h = rotateLeft(h);  }
+	if (isRed(h.left)  &&  isRed(h.left.left)) { h = rotateRight(h); }
+	if (isRed(h.left)  &&  isRed(h.right))     { flipColors(h);      } 
+ 
+	return h;
+}
+```
+
+Java 的 [TreeMap](https://github.com/AdoptOpenJDK/openjdk-jdk11/blob/999dbd4192d0f819cb5224f26e9e7fa75ca6f289/src/java.base/share/classes/java/util/TreeMap.java) 就是一种红黑树的实现，但不是左向的结构，并且它映射的是 2-3-4 树结构。
+
+lecture 16、17、18 的主题是，我们要用搜索树（search tree）结构实现 Set 和 Map。Set 和 Map 几乎是相同的结构，除了 Map 会额外保存 key 对应的 value：
+    - 先介绍二分搜索树（BST），一种查询效率是 O(logN) 的结构，但受困于树的平衡情况；
+    - 接着讲 B 树，一种优化了高度的树结构，它的高度增长始终为 O(logN)，但它实现起来复杂；
+    - 最后介绍了红黑树，用 BST 实现 B 树的操作，使它其操作的运行时在 O(logN) 的级别，且实现起来不复杂。
+
+课程介绍这些结构的重点放在概念的过程性理解，比如 B 树添加元素的过程、红黑树对 B 树的映射如何维持，都用了分步骤的图示表示，便于理解，对这些结构的实现一带而过。
+
+lecture 18 最后讲，除了用搜索树实现 Set 和 Map，还有其他有效率的方式，如：
+    - 链表结构：Skip lists are linked lists with express lanes；
+    - 哈希 Hashing：lecture 19 开始讲
