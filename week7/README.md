@@ -4,8 +4,8 @@
 
 详细见 `./lectures.md`
 
-- lecture17: B-Tree 结构介绍
-- lecture18: 
+- lecture17: B 树
+- lecture18: 红黑树
 
 ## 2. Discussion/Review 
 

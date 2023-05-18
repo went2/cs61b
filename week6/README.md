@@ -2,7 +2,7 @@
 
 ## 1. Lectures
 
-详细见 `./lectures/README.md`
+详细见 `./lectures.md`
 
 - lecture15: 分析常见算法的运行时
 - lecture16: ADTs 和 BSTs
