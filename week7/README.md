@@ -16,8 +16,8 @@
 
 ## 2. Discussion/Review 
 
-- disc07: [ADTs, Asymptotics II, BSTs](https://drive.google.com/file/d/1a1SWyETjnPTgkkTiXmMYzfJNwWEYrPfx/view?usp=sharing)
-- exam-level07：[ADTs, Asymptotics II, BSTs Exam-level](https://drive.google.com/file/d/1DDGhpJEy6TdUkK-ru8kITbYs4u6HTs62/view?usp=share_link)
+- disc07: [ADTs, Asymptotics II, BSTs 练习题](https://drive.google.com/file/d/1a1SWyETjnPTgkkTiXmMYzfJNwWEYrPfx/view?usp=sharing)
+- exam-level07：[ADTs, Asymptotics II, BSTs 考试题](https://drive.google.com/file/d/1DDGhpJEy6TdUkK-ru8kITbYs4u6HTs62/view?usp=share_link)
 
 ## 3. Lab
 
