@@ -21,7 +21,7 @@
 
 ## 3. Lab
 
-- [BSTMap](https://sp23.datastructur.es/materials/lab/lab07/)：提供了一个 `Map61B` 接口文件，要求 BST 实现这个接口。
+- [实现一个 BSTMap](https://sp23.datastructur.es/materials/lab/lab07/)：提供了一个 `Map61B` 接口文件，要求 BST 实现这个接口。
 
 ## 4. Assignment
 

@@ -17,7 +17,7 @@
 
 ## 3. Lab
 
-Lab 09: Project 2B Checkpoint：校内学生参与的对 Project 2B 项目完成过程的
+[Lab 08: 实现一个 MyHashMap](https://sp23.datastructur.es/materials/lab/lab08/): 根据给定的 CS61B 接口要求和脚手架代码，实现一个 HashMap。
 
 ## 4. Assignment
 
