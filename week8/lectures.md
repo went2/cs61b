@@ -69,6 +69,8 @@ public interface MinPQ<Item> {
 
 ![heap-array-implementation](./images/heap-array-imp-3.png)
 
+换句话说，任何一个从小到大排列的数组，就能看成一个最小堆，从大到小排列的数组是个最大堆
+
 ![heap-implementation-summary](./images/heap-imp.png)
 
 ### 课程至此提到的数据结构及实现
