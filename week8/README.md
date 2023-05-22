@@ -5,8 +5,8 @@
 详细见 `./lectures.md`
 
 - lecture 20: 哈希2
-- lecture 21: 
-- lecture 22: 
+- lecture 21: 堆与优先队列（Heap and Priority Queue）
+- lecture 22: 树与图的遍历（Tree and Graph Traversals）
 
 ## 2. Discussion/Review 
 
@@ -17,8 +17,9 @@
 
 ## 3. Lab
 
-[Lab 08: 实现一个 MyHashMap](https://sp23.datastructur.es/materials/lab/lab08/): 根据给定的 CS61B 接口要求和脚手架代码，实现一个 HashMap。
+[Lab 08: 实现一个 MyHashMap](https://sp23.datastructur.es/materials/lab/lab08/): 根据给定的 CS61B 接口要求和脚手架代码，实现一个 HashMap，详见 `./lab08-MyHashMap.md`
 
 ## 4. Assignment
 
-[Homework 3](https://www.gradescope.com/courses/484660/assignments/2713206)
+[Homework 3](https://www.gradescope.com/courses/484660/assignments/2713206)：校内学生参与。
+[Project 2B](https://sp23.datastructur.es/materials/proj/proj2b)

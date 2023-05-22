@@ -30,3 +30,47 @@
     - 可变数据类型进行修改后，它的哈希码也会修改，因此查询哈希表的时候会 break
     - 不可变数据类型，优点是使用起来无后顾之忧，缺点是每次要发生改动，就得创建一个新的对象，如每次拼接一个段 String，就会创建新的包含已有内容和新的内容的 String 对象。
 
+## lecture 20 堆与优先队列
+
+### 优先队列
+
+一种 ADT，用于追踪 “smallest”, “largest”, “best” 等之类的元素。
+
+```java
+/** (Min) Priority Queue: Allowing tracking and removal of the
+  * smallest item in a priority queue. */
+public interface MinPQ<Item> {
+	/** Adds the item to the priority queue. */
+	public void add(Item x);
+	/** Returns the smallest item in the priority queue. */
+	public Item getSmallest();
+	/** Removes the smallest item from the priority queue. */
+	public Item removeSmallest();
+	/** Returns the size of the priority queue. */
+	public int size();
+}
+```
+
+### 堆
+
+- 堆是一种特殊的树结构
+- 二分最小堆（binary min-heap）：一个具有**最小堆属性**的**完全**二分树：
+    - 最小堆：每个节点都小于等于它的子节点
+    - 完全树：只在最底层出现缺失的节点，每个节点都尽可能向左叉。
+
+- 堆的操作：
+    - 插入：插入到底层，然后和父节点比较，向上浮动（swim），直到它大于等于父节点。
+
+![heap-intro](./images/heap-intro.png)
+
+### 堆的实现
+
+- 把一个堆转成树，只要从上到下、从左到右读取值，然后一次插入数组从 1 开始的位置即可。如下图：
+
+![heap-array-implementation](./images/heap-array-imp-3.png)
+
+![heap-implementation-summary](./images/heap-imp.png)
+
+### 课程至此提到的数据结构及实现
+
+![searching-ds](./images/searching-ds.png)

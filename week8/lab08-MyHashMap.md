@@ -93,3 +93,6 @@ public class TestMyHashMapBuckets {
 |4| 否 | N/A | 10,000,000 | 3.68s | 2.20s |
 
 MyHashMap 和 Java 的 HashMap 在千万（及以下）级别的节点插入操作中性能差距不大，上亿级别的数量有很大差距。
+
+后来 参考[这个文档 p7](https://www.cs.princeton.edu/~appel/HashTables.pdf)，对 HashMap 的定义进行了一点优化，删除了初始化数组时为每个 bucket 创建一个数据结构的做法，得到了性能提升：
+  - 随机插入 1 亿个节点，在我机器上跑 46.72s，对比之前（59.94s）提升了 22%
