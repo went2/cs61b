@@ -6,7 +6,7 @@
 
 - lecture 20: 哈希2
 - lecture 21: 堆与优先队列（Heap and Priority Queue）
-- lecture 22: 树与图的遍历（Tree and Graph Traversals），放到 week9 笔记中
+- lecture 22: 树与图的遍历（Tree and Graph Traversals），放到 week9 笔记
 
 ## 2. Discussion/Review 
 
