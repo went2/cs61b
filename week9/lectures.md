@@ -45,3 +45,10 @@ Euler Tour 和 Hamilton Tour 看起来很像，但解法大不相同， Euler To
 
 使用深度优先遍历采用递归的实现，一个深度优先的先序遍历[解决 s-t connectivity 的示例](https://docs.google.com/presentation/d/1OHRI7Q_f8hlwjRJc8NPBUc1cMu5KhINH1xGXWDfs_dA/edit)
 
+### 广度优先遍历
+
+广度优先遍历是一层一层地遍历所有节点，同层的节点到开始节点的距离相同。
+
+- 
+
+[广度优先遍历示例]()
