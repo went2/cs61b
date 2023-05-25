@@ -177,3 +177,5 @@ public class BreadthFirstPaths {
 如果使用临接列表作为图的底层结构，跑上面两个搜索代码时，其运行时是：
 
 ![graph-runtime](./images/graph-runtime.png)
+
+课程没有对实现部分做详细解释，这部分放到 Lab2B 让学生自己实作 Graph 本身的实现以及遍历图的客户类的实现。
