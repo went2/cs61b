@@ -26,9 +26,8 @@
 
 Euler Tour 和 Hamilton Tour 看起来很像，但解法大不相同， Euler Tour 有 θ(# edges) 的算法，而目前最快的 Hamilton Tour 算法是指数时间。
 
-与图相关的问题大多涉及到遍历图，通常是遍历图的过程中进行一些操作进行解决。s-t connectivity, path finding 等问题都是在图遍历的过程中解决。
+与图相关的问题大多涉及到遍历图，通常是在遍历图的过程中进行一些操作来解决。而遍历图的方式（与遍历树类似）有：
 
-遍历图的方式：与遍历树类似，遍历图也有：
 - 深度优先遍历
     - 前序遍历
     - 后续遍历
@@ -36,7 +35,7 @@ Euler Tour 和 Hamilton Tour 看起来很像，但解法大不相同， Euler To
 
 ### 深度优先搜索 Depth First Search
 
-图的深度优先遍历是依次遍历完所有邻居节点的子图（sub-graph）的方式
+深度优先遍历是种概括的说法，指依次遍历完所有邻居节点的子图（sub-graph）的方式，核心过程是深度优先搜索。
 
 深度遍历搜索常用于解决：
   - s-t connectivity 问题
@@ -66,9 +65,9 @@ Euler Tour 和 Hamilton Tour 看起来很像，但解法大不相同， Euler To
 
 广度优先遍历是一层一层地遍历所有节点，同层的节点到开始节点的距离相同。
 
-广度优先搜索常用语解决最短路径类问题。
+广度优先搜索常用于解决最短路径类问题。
 
-算法过程，或见[广度有限搜索示例](https://docs.google.com/presentation/d/1JoYCelH4YE6IkSMq_LfTJMzJ00WxDj7rEa49gYmAtc4/edit#slide=id.g76e0dad85_2_380)：
+算法过程，或见[广度优先搜索示例](https://docs.google.com/presentation/d/1JoYCelH4YE6IkSMq_LfTJMzJ00WxDj7rEa49gYmAtc4/edit#slide=id.g76e0dad85_2_380)：
   1. 初始化一个队列（queue），将起始节点s放入队列，标记节点s，这种情境下的队列又叫 fringe
   2. 执行以下过程直到队列为空：
     - 从队列中移除队首节点，v
@@ -127,7 +126,7 @@ public class Paths {
 }
 ```
 
-以下是一个深度有限搜索的实现（来自课程slides）：
+以下是一个深度优先搜索的实现（来自课程slides）：
 
 ```java
 public class DepthFirstPaths {
@@ -179,3 +178,59 @@ public class BreadthFirstPaths {
 ![graph-runtime](./images/graph-runtime.png)
 
 课程没有对实现部分做详细解释，这部分放到 Lab2B 让学生自己实作 Graph 本身的实现以及遍历图的客户类的实现。
+
+## lecture 24 最短路径
+
+### Dijkstra's algorigthm
+
+假设有一个有向图，从起始节点 s 开始能通往所有其他节点，那么计算 s 到其他所有节点的最短路径，这个最短路径会是ß什么形态？
+
+结论是：最短路径永远是一棵树（shortest path tree）。可以从树和图的定义理解，树和图都由节点和边组成，不同在于，在一颗树中，从 s 节点出发，只有一条路径通往 t 节点，而在图中，s 节点可以通过多条路径到达 t 节点。对于最短路径来说，两个节点之间的最短路径只有 1 条，所以从 s 节点到 t 节点形成的最短路径是个树结构。
+
+Josh 说这个结论很重要，**最短路径是一棵树**，叫最短路径树，它的边的数量永远是产生它的图的节点数量 - 1（V-1）。
+
+如何生成这棵树？
+
+Josh 讲这块的时候循循善诱，先举了两个基于深度优先搜索实现的例子，它们不符合要求，但容易实现，符合学到这里时的学生已有的认知水平。在两种不合格的算法基础上，提出 Dijkstra's algorigthm，一种基于 best-first-search 的算法。
+
+其核心过程就是对图进行 best-first-search，当访问节点 v 时：
+    1. 对于节点 v 相邻节点 w，我们算出 w 的距离，算法是 v 的距离 + v 到 w 的边的权重；
+    2. 如果得到的结果比 w 已有的距离更好，则更新 w 的距离、以及到达它的节点，这个更新的过程叫“放松” v-w 这条边（relaxing the edge）
+
+具体实现过程时，用一个优先队列管理访问节点的优先级。
+
+Dijkstra's algorigthm 伪代码：
+
+- PQ.add(source, 0)
+- 对于所有其他节点 v，PQ.add(v, infinity)
+- while PQ is not empty：
+    - p = PQ.removeSmallest();
+    - relaxing all edges from p
+
+Relaxing an edge p → q with weight w:
+    - if distTo[p] + w < distTo[q]:
+        - distTo[q] = distTo[p] + w
+        - edgeTo[q] = p
+        - PQ.changePriority(q, distTo[q])，更新 q 在 PQ 中的优先级
+
+relaxing 操作的运行时是 O(logN)，主要花在 PQ 重新排列 q 的优先级上。
+
+### A* 算法
+
+- Dijkstra 算法用于生成从一点出发到所有节点的最短路径树，适合无负数边的情况
+
+- A* 算法用于寻找从节点 s 出发到节点 t 的最短路径。
+    - 在 Dijkstra 算法基础上加了一个距离目标节点的估算值。
+    - 原先在 PQ 中保存的 distance(v, s)，变为 `distance(v， s) + h(v, goal)`
+
+A* 算法相比 Dijkstra 算法的 distTo[] 和 edgeTo[] 两个数组保存的元素都相同，但是 PQ 中保存的节点的顺序不同。
+    - 不保证每个节点都会访问到
+    - 结果也不是一颗从源节点出发的最短路径树
+    - h(v, goal) 叫启发式估算（heuristic estimate），没有指定规则，比如可以是节点之间的维度差，如：
+
+```
+h(v, goal) {
+    return computeLineDistance(v.latLong, goal.latLong);
+}
+```
+
