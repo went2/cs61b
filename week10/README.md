@@ -4,7 +4,9 @@
 
 详细见 `./lectures.md`
 
-- lecture 26: 
+- lecture 26: Prefix Operations and Tries
+- lecture 27: 软件工程概述1
+- lecture 28: Reductions and Decomposition
 
 ## 2. Discussion/Review 
 
@@ -17,9 +19,8 @@
 
 ## 3. Lab
 
-[Lab 09: Project 2B check point](https://sp23.datastructur.es/materials/lab/lab09/): 校内学生参与，Project 2B 项目的过程性讨论
+no Lab
 
 ## 4. Assignment
 
-[Homework 3](https://www.gradescope.com/courses/484660/assignments/2713206)：校内学生参与。
-Midterm 2 3/16: 第二次其中考试，校内学生参与。
+[Project 2B](https://sp23.datastructur.es/materials/proj/proj2b)：校内学生参与。
