@@ -33,7 +33,7 @@ Euler Tour 和 Hamilton Tour 看起来很像，但解法大不相同， Euler To
     - 后续遍历
 - 广度优先遍历
 
-### 深度优先搜索 Depth First Search
+### 深度优先遍历
 
 深度优先遍历是种概括的说法，指依次遍历完所有邻居节点的子图（sub-graph）的方式，核心过程是深度优先搜索。
 
@@ -49,13 +49,13 @@ Euler Tour 和 Hamilton Tour 看起来很像，但解法大不相同， Euler To
   - 否则，对所有未标记的 s 的邻居执行 connected(v,t)，如果有任何邻居是 t，返回 true；
   - 返回 false
 
-- all paths from s 问题的一个算法过程：dfs(v)，或见[寻找节点s的所有路径解法过程示例](https://docs.google.com/presentation/d/1lTo8LZUGi3XQ1VlOmBUF9KkJTW_JWsw_DOPq8VBiI3A/edit#slide=id.g76e0dad85_2_380)
+- 寻找从s 出发到所有节点路径的问题的过程：dfs(v)，或见[寻找节点s的所有路径解法过程示例](https://docs.google.com/presentation/d/1lTo8LZUGi3XQ1VlOmBUF9KkJTW_JWsw_DOPq8VBiI3A/edit#slide=id.g76e0dad85_2_380)
   - 标记 v；
   - 对 v 的每个未标记邻居节点 w 执行：
     - 设置 w 的来源为 v，`edgeTo[w] = v`
     - dfs(w)
 
-- 选择邻居时，按一个规则来即可，如每次选择最小 key 的邻居
+- 选择下一个要要访问的节点时，按一个规则来即可，如每次选择最小 key 的邻居
 - 上述算法都要维护两个数组，一个标记是否已访问（marked），一个保存边（edgeTo），保存边的数组指，数组的每个索引位置保存它的来源，如，从 0 节点开始，得到它的最小邻居节点是 1，保存边的操作是将节点 1 的来源设为节点 0 `edgeTo[1] = 0`。
 
 - 深度优先的前序遍历：在对邻居节点继续 dfs() 前先进行当前节点的操作，如将邻居节点的来源设为当前节点，处理节点的顺序就是 dfs() 调用的顺序；
@@ -65,7 +65,10 @@ Euler Tour 和 Hamilton Tour 看起来很像，但解法大不相同， Euler To
 
 广度优先遍历是一层一层地遍历所有节点，同层的节点到开始节点的距离相同。
 
-广度优先搜索常用于解决最短路径类问题。
+广度优先搜索常用于解决最短路径类问题，要点是：
+  - 要记录 distTo：该节点距离初始节点的距离，即概念上的层数，层数每次 + 1；
+  - 要用一个队列管理下一次需要访问的节点。访问当前节点时，将它的相邻节点做标记、加层数，然后 enqueue
+  - 然后从队列中 dequeue 访问下一个节点
 
 算法过程，或见[广度优先搜索示例](https://docs.google.com/presentation/d/1JoYCelH4YE6IkSMq_LfTJMzJ00WxDj7rEa49gYmAtc4/edit#slide=id.g76e0dad85_2_380)：
   1. 初始化一个队列（queue），将起始节点s放入队列，标记节点s，这种情境下的队列又叫 fringe
@@ -183,7 +186,7 @@ public class BreadthFirstPaths {
 
 ### Dijkstra's algorigthm
 
-假设有一个有向图，从起始节点 s 开始能通往所有其他节点，那么计算 s 到其他所有节点的最短路径，这个最短路径会是ß什么形态？
+假设有一个有向图，从起始节点 s 开始能通往所有其他节点，那么计算 s 到其他所有节点的最短路径，这个最短路径会是什么形态？
 
 结论是：最短路径永远是一棵树（shortest path tree）。可以从树和图的定义理解，树和图都由节点和边组成，不同在于，在一颗树中，从 s 节点出发，只有一条路径通往 t 节点，而在图中，s 节点可以通过多条路径到达 t 节点。对于最短路径来说，两个节点之间的最短路径只有 1 条，所以从 s 节点到 t 节点形成的最短路径是个树结构。
 
@@ -191,10 +194,10 @@ Josh 说这个结论很重要，**最短路径是一棵树**，叫最短路径�
 
 如何生成这棵树？
 
-Josh 讲这块的时候循循善诱，先举了两个基于深度优先搜索实现的例子，它们不符合要求，但容易实现，符合学到这里时的学生已有的认知水平。在两种不合格的算法基础上，提出 Dijkstra's algorigthm，一种基于 best-first-search 的算法。
+Josh 先举了两个基于深度优先搜索实现的例子，它们不符合要求，但容易实现，符合学到这里时的学生已有的认知水平。在两种不合格的算法基础上，提出 Dijkstra's algorigthm，一种基于 best-first-search 的算法。
 
 其核心过程就是对图进行 best-first-search，当访问节点 v 时：
-    1. 对于节点 v 相邻节点 w，我们算出 w 的距离，算法是 v 的距离 + v 到 w 的边的权重；
+    1. 对于节点 v 相邻节点 w，我们算出 w 的距离，算法是 v 到源点的距离 + v->w  这条边的权重；
     2. 如果得到的结果比 w 已有的距离更好，则更新 w 的距离、以及到达它的节点，这个更新的过程叫“放松” v-w 这条边（relaxing the edge）
 
 具体实现过程时，用一个优先队列管理访问节点的优先级。
@@ -214,6 +217,8 @@ Relaxing an edge p → q with weight w:
         - PQ.changePriority(q, distTo[q])，更新 q 在 PQ 中的优先级
 
 relaxing 操作的运行时是 O(logN)，主要花在 PQ 重新排列 q 的优先级上。
+
+从结果看，Dijkstra's 算法是从图中拿掉一些权重大的边，使得剩下的节点形成一棵树。
 
 ### A* 算法
 
@@ -250,3 +255,25 @@ h(v, goal) {
 - 比如供电系统中，电缆要连接一个区域所有房子，连接的方式有多种，找到其中最省电缆的方式就是一个最小生成树问题
 - old school handwriting recoginition，传统手写笔画识别，用最小生成树为手写文字中的笔画建模
 
+### Prim's 算法
+
+计算图的 MST 的一种算法
+
+与 Dijkstra's 算法几乎一样：
+  - 将所有节点插入一个优先队列，按节点的 distance 排序，起始节点 distance 为 0，其他为无穷大
+  - 不同之处在于 distTo 算的是边的长度，不再是节点到初始节点的距离
+  - 从 PQ 中移除一个节点代表将该节点 commit 到 MST 中
+
+### Kruskal's 算法
+
+计算图的 MST 的另一种算法，原理基于图具有的切分属性 [cut property](https://cs61b-2.gitbook.io/cs61b-textbook/25.-minimum-spanning-trees/25.1-msts-and-cut-property):
+  - cut：指将一个图的顶点切成两份，分属两个集合
+  - crossing edge：如果有边连接了两个集合中的节点，这个边叫连接边（自译 crossing edge）
+  - cut property：对于一个切分了的图来说，最小权重的连接边一定在 MST 中
+
+基于 cut property，Kruskal's 算法把图看作先切成了 V 份，V 为节点数，连接这些节点的边有 E 条，将这些边从小到达排序，再逐一取出，那些不会形成环形的边们最终构成的就是 MST。
+
+Kruskal's 算法：
+  - 将图的所有边都插入一个优先队列，按边的权重排列，权重小的在前
+  - 初始化一个不交集
+  - 重复执行这步，直到队列为空：从队列中获取一条边，判断这条边是否和已有的边形成环形（两个点是否在不交集中connected），否，则将这条边加入 MST，同时加入不交集；是，则没有动作。
