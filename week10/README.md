@@ -2,11 +2,13 @@
 
 ## 1. Lectures
 
-详细见 `./lectures.md`
-
 - lecture 26: Prefix Operations and Tries
 - lecture 27: 软件工程概述1
 - lecture 28: Reductions and Decomposition
+
+第十周开始讲软件工程与算法
+
+详见 `./lectures.md`
 
 ## 2. Discussion/Review 
 
