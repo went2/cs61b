@@ -31,3 +31,7 @@
 
 [Homework 3](https://www.gradescope.com/courses/484660/assignments/2713206)：校内学生参与。
 Midterm 2 3/16: 第二次其中考试，校内学生参与。
+
+## 5. Review
+
+这周开始的内容对我是个大挑战，学习过程中不断怀疑自己的认知，几乎放弃（中断了几天），但想到我可能再接触不到 Josh 这样一步步推导算法给人启发的人，觉得可惜，后面借着练习题，在纸笔上演示深度优先、广度优先搜索、Dijkstra's、A*、Prim's、Kruskal's 的算法过程，哪里不会就回头看 slides，才有一点通顺的感觉，discussions 部分的练习题真重要啊。
