@@ -1,4 +1,3 @@
-package week2.exercises;
 
 public class TRS1 {
   // 取输入整数每一位的数字相加，直到和小于10

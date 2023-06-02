@@ -3,7 +3,7 @@
 ## lecture 26 Prefix Operations and Tries
 
 - Trie, 一种功能类似 Set 或 Map 的结构，保存的 key 通常是字符串类型，针对字符串的查询、插入的操作性能好。
-- 形态是一棵树，节点保存字符，以及到下一个节点的连接。
+- 实现一个 Trie 时，将它看作一棵树结构，节点是一个 Map 对象，`Map<Character, Node>`，保存保存字符到下一个节点的映射。
 
 TrieSet 的接口定义如下：
 
@@ -37,6 +37,7 @@ public class TrieSet {
 ![performance-trie-node](./images/performance-trie-node.png)
 
 哈希表和 BST 能大大节省内存占用，但它们操作起来更耗时一点。
+
 
 ## lecture 27 Software Engineering I
 
