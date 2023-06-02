@@ -38,6 +38,9 @@ public class TrieSet {
 
 哈希表和 BST 能大大节省内存占用，但它们操作起来更耗时一点。
 
+### Trie 的实现
+
+后来为了测试 disc12 的练习题，实现了一个简单的 Trie，见 `./src/MyTrieSet.java`
 
 ## lecture 27 Software Engineering I
 
