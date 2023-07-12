@@ -1,6 +1,6 @@
 # week5 课程纲要
 
-本周将结束 Java 基本语法，进入课程 phase2 阶段：Data Structure。
+本周将结束 Java 基本语法，进入课程 phase2：Data Structure。
 
 ## Lectures
 
