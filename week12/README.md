@@ -6,7 +6,7 @@
 
 ## 1. lectures
 
-- lecture 29 - 排序算法基础
+- lecture 29 - 排序算法基础、选择排序、合并排序、插入排序
 - lecture 30 - 快速排序算法 I（和 II 一齐记在 week 13 的笔记中）
 - lecture 31 - 软件工程 II
 
