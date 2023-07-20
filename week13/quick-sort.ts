@@ -40,6 +40,37 @@ function partition(arr: number[]): partionedArrInfo {
   };
 }
 
+// Tony Hoare's partitioning
+function partition2(arr: number[]): partionedArrInfo {
+  const pivot = arr[0];
+  let left = 1;
+  let right = arr.length - 1;
+  while (left < right) {
+    if (arr[left] >= pivot && arr[right] <= pivot) {
+      swap(arr, left, right);
+      left++;
+      right--;
+    }
+    if (arr[left] < pivot) {
+      left++;
+    }
+    if (arr[right] > pivot) {
+      right--;
+    }
+  }
+  swap(arr, 0, right);
+  return {
+    arr,
+    pivot_inde: right,
+  };
+}
+
+function swap(arr: number[], index1: number, index2: number) {
+  let value1 = arr[index1];
+  arr[index1] = arr[index2];
+  arr[index2] = value1;
+}
+
 let arr = [100, 16, 19, 120, 20, 340, 100];
 const result = quickSort(arr);
 console.log(result);
