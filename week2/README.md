@@ -15,7 +15,7 @@
 - 第二个是考试题，[Introduction to Java - Exam Level 2](https://drive.google.com/file/d/1uVmerLST6KTWih6JFgB2XwpKWH8XiXPX/view)，题目来自过去几年的期中考试
 - 第三个是 Tutor Review Session 题，针对 IntList 结构的练习，如链表翻转等
 
-详见 `./discussions/README.md`
+我的回答见 `./discussions/README.md`
 
 ## 3. Lab
 

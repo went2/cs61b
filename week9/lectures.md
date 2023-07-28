@@ -26,11 +26,11 @@
 
 Euler Tour 和 Hamilton Tour 看起来很像，但解法大不相同， Euler Tour 有 θ(# edges) 的算法，而目前最快的 Hamilton Tour 算法是指数时间。
 
-与图相关的问题大多涉及到遍历图，通常是在遍历图的过程中进行一些操作来解决。而遍历图的方式（与遍历树类似）有：
+与图相关的问题大多涉及到图遍历，通常是在图遍历的过程中进行一些操作来解决。而图遍历的方式（与遍历树类似）有：
 
 - 深度优先遍历
-    - 前序遍历
-    - 后续遍历
+  - 前序遍历
+  - 后续遍历
 - 广度优先遍历
 
 ### 深度优先遍历
@@ -43,13 +43,13 @@ Euler Tour 和 Hamilton Tour 看起来很像，但解法大不相同， Euler To
   - all paths from s 问题：
     - 目标：找到从 s 点出发到图中所有节点的路径
 
-- s-t connectivity 问题的一种算法过程：connected(s,t)，或见[s-t connectiviy 解法过程示例](https://docs.google.com/presentation/d/1OHRI7Q_f8hlwjRJc8NPBUc1cMu5KhINH1xGXWDfs_dA/edit#slide=id.g76e536eb1_0_160)
+- s-t connectivity 问题的一种算法过程：connected(s,t)，见[s-t connectiviy 解法过程示例](https://docs.google.com/presentation/d/1OHRI7Q_f8hlwjRJc8NPBUc1cMu5KhINH1xGXWDfs_dA/edit#slide=id.g76e536eb1_0_160)
   - 标记 s;
   - 如果 s == t，返回true；
   - 否则，对所有未标记的 s 的邻居执行 connected(v,t)，如果有任何邻居是 t，返回 true；
   - 返回 false
 
-- 寻找从s 出发到所有节点路径的问题的过程：dfs(v)，或见[寻找节点s的所有路径解法过程示例](https://docs.google.com/presentation/d/1lTo8LZUGi3XQ1VlOmBUF9KkJTW_JWsw_DOPq8VBiI3A/edit#slide=id.g76e0dad85_2_380)
+- 寻找从 s 出发到所有节点路径的问题的过程：dfs(v)，见[寻找节点s的所有路径解法过程示例](https://docs.google.com/presentation/d/1lTo8LZUGi3XQ1VlOmBUF9KkJTW_JWsw_DOPq8VBiI3A/edit#slide=id.g76e0dad85_2_380)
   - 标记 v；
   - 对 v 的每个未标记邻居节点 w 执行：
     - 设置 w 的来源为 v，`edgeTo[w] = v`
@@ -70,7 +70,7 @@ Euler Tour 和 Hamilton Tour 看起来很像，但解法大不相同， Euler To
   - 要用一个队列管理下一次需要访问的节点。访问当前节点时，将它的相邻节点做标记、加层数，然后 enqueue
   - 然后从队列中 dequeue 访问下一个节点
 
-算法过程，或见[广度优先搜索示例](https://docs.google.com/presentation/d/1JoYCelH4YE6IkSMq_LfTJMzJ00WxDj7rEa49gYmAtc4/edit#slide=id.g76e0dad85_2_380)：
+算法过程，见[广度优先搜索示例](https://docs.google.com/presentation/d/1JoYCelH4YE6IkSMq_LfTJMzJ00WxDj7rEa49gYmAtc4/edit#slide=id.g76e0dad85_2_380)：
   1. 初始化一个队列（queue），将起始节点s放入队列，标记节点s，这种情境下的队列又叫 fringe
   2. 执行以下过程直到队列为空：
     - 从队列中移除队首节点，v
@@ -107,7 +107,7 @@ public static void print(Graph G) {
 
 - 实现图的底层数据结构：
   - adjacency matrix 临接矩阵，n × n 的矩阵，n 是节点数量，每一行表示一个节点与所有其他节点的连接情况，有连接为 1，没连接为 0，如 0行1列为 1 表示，节点0指向节点1。缺点，空间浪费，运行效能低，遍历操作的的运行时 θ(v^2)
-  - adjacency list 临接列表，最常见的图结构底层实现，实现思路类似哈希表，数组的索引及节点的key，数组的值保存节点的所有邻居的key。这种实现来跑上面的遍历算法 print 的运行时分析，假设 V 是所有节点数，E是所有边数：
+  - adjacency list 临接列表，最常见的图结构底层实现，实现思路类似哈希表，数组的索引及节点的key，数组的值保存节点的所有邻居的key。这种实现来跑上面的遍历算法 print 的运行时分析，假设 V 是所有节点数，E 是所有边数：
     1. best case：所有节点都孤立，没有连接，只要遍历一次所有节点，无其他操作，θ(V)
     2. worst case：所有节点都和其他节点连接，需要遍历所有节点，每次遍历再遍历节点的所有邻居，θ(V^2)
     3. 在这样的上界和下界下，总体运行时是 θ(V+E)。为什么 V+E 不在化简为类似类似 V+V=2V，从而得到 θ(V)的结论？因为，图的节点数和边数是独立计算的，两个数量没有关系，当一个图很稀疏时，决定运行时的是节点数量，当一个图很密集，节点之间联系众多时，决定运行时的是边数，所以两者在运行时中的比重都不可忽视。
@@ -180,7 +180,7 @@ public class BreadthFirstPaths {
 
 ![graph-runtime](./images/graph-runtime.png)
 
-课程没有对实现部分做详细解释，这部分放到 Lab2B 让学生自己实作 Graph 本身的实现以及遍历图的客户类的实现。
+课程没有对实现部分做详细解释，这部分放到 Lab2B 让学生自己实作图结构的实现以及遍历图的客户类的实现。
 
 ## lecture 24 最短路径
 

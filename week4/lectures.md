@@ -8,11 +8,11 @@
   3. 内嵌的类；
 
 - 子类不继承：父类的构造函数，也不继承 `private` 标识的变量。
-- 子类构造函数与父类构造函数的交互：子类构造函数内必须首先调用父类的构造函数（通过 `super()` 调用），如果开发者没写，Java 会默认加上。如果父类的构造函数有重载方法，那么 `super()`, `super(x)` 是两个不同的调用，子类调用父类构造函数时要注意区分。
-- Java 中的所有类都隐式地 `extends` Object 类。（JavaScript 中的所有对象的原型追溯到顶端也是 Object 的 prototype 对象）
+- 子类构造函数与父类构造函数的交互：子类构造函数内必须首先调用父类的构造函数（调用`super()`），如果开发者没写，Java 会默认加上。如果父类的构造函数有重载方法，那么 `super()`, `super(x)` 是两个不同的调用，子类调用父类构造函数时要注意区分。
+- Java 中的所有类都隐式地 `extends` Object 类。（JavaScript 中的所有对象的原型追溯到顶端都是 Object.prototype）
 
 及：interface 不继承 Object 类
-再及：`extends` 表示的也是一种 `is-a` 关系，不能用来表示 `has-a` 关系
+再及：`extends` 表示的是一种 `is-a` 关系，不能用来表示 `has-a` 关系
 
 ## 2. 封装
 
@@ -20,7 +20,7 @@
   1. 一层层地抽象，创建不同级别的抽象层，互相之间有清晰的屏障；
   2. Design for change(D Parnas) ，在写代码时就为变化留有余地：
     - 围绕对象组织程序；
-    - Let objects deside how things are done;
+    - Let objects deside how things are done；
     - Hide information others don't nedd. 隐藏信息
 
 ## 3. 编译时类型与类型转换 compile-time type and casting
@@ -118,7 +118,7 @@ public class Dog implements MyComparable {
 // max 方法的参数是 MyComparable 对象，而不是 Object
 public static MyComparable max(MyComparable[] items) {
   MyComparable maxObj = items[0];
-  for(int i = 0; i < items.lenth; i += 1) {
+  for(int i = 0; i < items.length; i += 1) {
     if(items[i].compareTo(maxObj) > 0) {
       maxObj = items[i];
     }
@@ -135,8 +135,8 @@ Java 内置了 Comparable<T> 接口，用它改写 Dog 类，可以省去 compar
 
 ```java
 public class Dog implements Comparable<Dog> {
-    public int compareTo(Dog o) {
-    return this.size - hahaDog.size;
+    public int compareTo(Dog otherDog) {
+    return this.size - otherDog.size;
   }
 }
 ```
@@ -151,14 +151,14 @@ public interface Comparator<T> {
 }
 ```
 
-因此，对于一个 Comparator 对象，我们能期待的是它有一个 compare 方法，接受两个对象，并将它们进行比较，o1 小于 o2 返回负数，相等返回 0，o1 大于 o2 返回正数，至于怎么确定 o1 o2 的大小，则由 Comparator 的实现决定。
+因此，对于一个 Comparator 对象，期望它有一个 compare 方法，接受两个对象，并将它们进行比较，o1 小于 o2 返回负数，相等返回 0，o1 大于 o2 返回正数，至于怎么确定 o1 o2 的大小，则由 Comparator 的实现决定。
 
 下面实现一个能比较两个 Dog 对象的 Comparator
 
 ```java
 public class Dog implements Comparable<Dog> {
   public int compareTo(Dog o) {
-    return this.size - hahaDog.size;
+    return this.size - o.size;
   }
 
   private static class NameComparator implements Comparator<Dog> {
