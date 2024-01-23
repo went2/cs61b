@@ -15,9 +15,9 @@
 - degree: 一个节点连接的边数是它的 degree
 
 **与图相关的有名问题**：
-    - s-t Path: 有没有从节点 s 到节点 t 的路径
+    - s-t Path: 求解从节点 s 到节点 t 的路径
     - shortest s-t Path: 从 s 到 t 的最短路径
-    - Connectivity: 图是否连接
+    - Connectivity: 图是否连接（从一个节点能抵达任何一个节点）
     - Biconnectivity: Is there a vertice whose removal disconnects the graph?
     - cycle detection: 检测是否有环结构
     - Euler Tour: 图中是否存在环，使每个边恰好使用到一次
@@ -186,31 +186,35 @@ public class BreadthFirstPaths {
 
 ### Dijkstra's algorigthm
 
+[算法演示](https://docs.google.com/presentation/d/1_bw2z1ggUkquPdhl7gwdVBoTaoJmaZdpkV6MoAgxlJc/pub?start=false&loop=false&delayms=3000&slide=id.g771336078_0_180)
+
 假设有一个有向图，从起始节点 s 开始能通往所有其他节点，那么计算 s 到其他所有节点的最短路径，这个最短路径会是什么形态？
 
 结论是：最短路径永远是一棵树（shortest path tree）。可以从树和图的定义理解，树和图都由节点和边组成，不同在于，在一颗树中，从 s 节点出发，只有一条路径通往 t 节点，而在图中，s 节点可以通过多条路径到达 t 节点。对于最短路径来说，两个节点之间的最短路径只有 1 条，所以从 s 节点到 t 节点形成的最短路径是个树结构。
 
-Josh 说这个结论很重要，**最短路径是一棵树**，叫最短路径树，它的边的数量永远是产生它的图的节点数量 - 1（V-1）。
+Josh 说这个结论很重要，**最短路径是一棵树**，叫最短路径树，树的边数永远是产生它的图的节点数量 - 1（V-1）。
 
 如何生成这棵树？
 
 Josh 先举了两个基于深度优先搜索实现的例子，它们不符合要求，但容易实现，符合学到这里时的学生已有的认知水平。在两种不合格的算法基础上，提出 Dijkstra's algorigthm，一种基于 best-first-search 的算法。
 
 其核心过程就是对图进行 best-first-search，当访问节点 v 时：
-    1. 对于节点 v 相邻节点 w，我们算出 w 的距离，算法是 v 到源点的距离 + v->w  这条边的权重；
-    2. 如果得到的结果比 w 已有的距离更好，则更新 w 的距离、以及到达它的节点，这个更新的过程叫“放松” v-w 这条边（relaxing the edge）
+  - 1. 对于节点 v 相邻节点 w，我们算出 w 的距离，算法是 v 到源点的距离，加上 v 到 w 这条边的权重；
+  - 2. 如果得到的结果比 w 已有的距离更好，则**更新 w 的距离**、以及**到达它的节点**，这个更新的过程叫“放松” v-w 这条边（relaxing the edge）
 
-具体实现过程时，用一个优先队列管理访问节点的优先级。
+算法先把所有节点都当作与源节点无限远，然后都放入一个最小优先队列（fringe PQ）中，优先队列以节点到源节点的距离排序，最小的在最前面。然后重复步骤直到队列中没有节点为止：
+  - 从 PQ 中弹出距离源节点最近的节点 v
+  - relaxing 所有从 v 出发的边，这这些变导向的节点的距离更新到 PQ 中，这会引起 PQ 中节点顺序的变化。relaxing v 就是确定从 v 出发能到到达的节点的距离。
 
 Dijkstra's algorigthm 伪代码：
 
-- PQ.add(source, 0)
+- 添加起点：PQ.add(source, 0)
 - 对于所有其他节点 v，PQ.add(v, infinity)
 - while PQ is not empty：
     - p = PQ.removeSmallest();
     - relaxing all edges from p
 
-Relaxing an edge p → q with weight w:
+Relaxing an edge p → q with weight w 的算法:
     - if distTo[p] + w < distTo[q]:
         - distTo[q] = distTo[p] + w
         - edgeTo[q] = p

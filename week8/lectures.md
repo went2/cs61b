@@ -32,9 +32,11 @@
 
 ## lecture 20 堆与优先队列
 
+[课件地址](https://docs.google.com/presentation/d/1uws16IyE3oGKKbKgTpl7s4a2950ef2CjI7B3ez8Gctw/edit#slide=id.ga991ac3fb_0_809)
+
 ### 优先队列
 
-一种 ADT，用于追踪 “smallest”, “largest”, “best” 等之类的元素。
+优先队列是一种队列，用于追踪 “smallest”, “largest”, “best” 等之类的元素，有限队列中的元素，都有优先级这个属性，来确定在队列中的位置。
 
 ```java
 /** (Min) Priority Queue: Allowing tracking and removal of the
@@ -51,25 +53,46 @@ public interface MinPQ<Item> {
 }
 ```
 
-### 堆
+### 用堆实现优先队列
 
-- 堆是一种特殊的树结构
-- 二分最小堆（binary min-heap）：一个具有**最小堆属性**的**完全**二分树：
-    - 最小堆：每个节点都小于等于它的子节点
-    - 完全树：只在最底层出现缺失的节点，每个节点都尽可能向左叉。
+- 堆是一种特殊的树结构，具体来说，最小堆就是一个具有**最小堆属性**的**完全**二叉树：
+    - 最小堆属性：每个节点都比它左右两边的子节点要小（或相等）；
+    - 完全树（complete tree）：只在最底层出现缺失的节点，且每个节点都尽可能向左叉（反例：有向右叉的底层节点，但缺失了一个向左叉的底层节点）
 
-- 堆的操作：
-    - 插入：插入到底层，然后和父节点比较，向上浮动（swim），直到它大于等于父节点。
+- 堆的主要 API（以最小堆为例）：
+    - 插入一个元素（insert）：将一个元素插入堆中，是先将它插入最底层作为最后一个元素，然后执行浮动（swim）操作，方法是，将它和它的父节点比较，如果它更小，则和父节点交换位置，直到它大于等于父节点。步骤演示参考此 [demo](https://docs.google.com/presentation/d/15zFWIJYrZBZvKXZRKpBUDPjeGXTrXZ4N7k2IIJzGzZM/edit#slide=id.g11ecaeaf56_0_0) ，运行时 O(logN)
+    - 移除一个元素（delMin）：移除的元素是根节点，最小堆的根节点是堆中最小的元素，最大堆的根节点是堆中最大的元素。移除根节点后，将最后一个节点移到根节点，接着对当前的根节点执行下沉（sink）操作，方法是，将根节点与左右子节点中**较小节点**比较，如果根节点的值更大，则和子节点交换位置，重复执行sink，直到它小于等于子节点的值。步骤演示参见 [demo](https://docs.google.com/presentation/d/1evpLmNgLb4mfPEMO1DTw1ENTMTfTVC7_NCEmrGQUMj0/edit#slide=id.g11ecaeaf56_0_374)，运行时 O(logN)
 
 ![heap-intro](./images/heap-intro.png)
 
+- 用堆实现 PQ 的操作：最小堆的API和最小优先队列的API几乎一一对应：
+    - getSmallest() - 获取堆中的根节点；
+    - add(x) - 往堆中插入节点 x；
+    - removeSmallest() - 移除堆中的根节点并返回；
+
 ### 堆的实现
 
-- 把一个堆转成树，只要从上到下、从左到右读取值，然后一次插入数组从 1 开始的位置即可。如下图：
+堆是基于完全二叉树实现的，实现堆结构即实现一个完全二叉树结构。树一般用两种底层结构实现：
 
-![heap-array-implementation](./images/heap-array-imp-3.png)
+1. 用一种递归结构实现，用节点之间的引用构成树结构，如：
 
-换句话说，任何一个从小到大排列的数组，就能看成一个最小堆，从大到小排列的数组是个最大堆
+```java
+public class Tree1A<Key> {
+   Key k; // e.g. 0
+   Tree1A left;
+   Tree1A middle;
+   Tree1A right;
+}
+```
+
+2. 用数组实现，数组的索引就是最小堆的优先级，用数组实现树都是完全树，堆恰好要求完全树结构，如下图：
+
+![tree_representation_with_array](./images/tree_representation_with_array.png)
+
+索引为 k 的元素：
+    - leftChild(k) = k*2
+    - rightChild(k) = k*2 + 1
+    - parent(k) = k/2
 
 ![heap-implementation-summary](./images/heap-imp.png)
 
